@@ -19,9 +19,7 @@
 
     <script>
         /*
-          ============================
           Task 1: Second Largest Number
-          ============================
         */
         function findSecondLargest(numbers) {
             let largest = -Infinity;
@@ -47,9 +45,9 @@
 
 
         /*
-          ======================
+          
           Task 2: Unique Elements
-          ======================
+        
         */
         function getUniqueElements(arr1, arr2) {
             return [...new Set([...arr1, ...arr2])];
@@ -64,9 +62,8 @@
 
 
         /*
-          ============================
           Task 3: Student Score Analysis
-          ============================
+          
         */
         function findTopStudent(students) {
             let topStudent = "";
@@ -98,7 +95,6 @@
             { name: 'Bob', age: 20, scores: [88, 90, 76] },
             { name: 'Charlie', age: 21, scores: [95, 80, 85] }
         ];
-
         const topStudent = findTopStudent(students);
 
         document.getElementById("task3").textContent =
