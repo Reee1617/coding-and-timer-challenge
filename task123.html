@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,85 +8,101 @@
 
     <h2>JavaScript Assignment Tasks</h2>
 
-    
     <h3>Task 1: Second Largest Number</h3>
-
+    <p id="task1"></p>
 
     <h3>Task 2: Unique Elements</h3>
+    <p id="task2"></p>
 
-    
     <h3>Task 3: Student Score Analysis</h3>
+    <p id="task3"></p>
 
     <script>
-        /* 
-           Task 1: Find Second Largest Number
-         */
-        const numbers = [23, 45, 67, 89, 12, 90, 44];
+        /*
+          ============================
+          Task 1: Second Largest Number
+          ============================
+        */
+        function findSecondLargest(numbers) {
+            let largest = -Infinity;
+            let secondLargest = -Infinity;
 
-        let largest = -Infinity;
-        let secondLargest = -Infinity;
+            numbers.forEach(num => {
+                if (num > largest) {
+                    secondLargest = largest;
+                    largest = num;
+                } else if (num > secondLargest && num !== largest) {
+                    secondLargest = num;
+                }
+            });
 
-        numbers.forEach(num => {
-            if (num > largest) {
-                secondLargest = largest;
-                largest = num;
-            } else if (num > secondLargest && num !== largest) {
-                secondLargest = num;
-            }
-        });
+            return secondLargest;
+        }
 
-        console.log("Task 1 - Second Largest:", secondLargest);
-        document.write("Task 1 - Second Largest Number: " + secondLargest + "<br><br>");
+        const task1Numbers = [23, 45, 67, 89, 12, 90, 44];
+        const secondLargest = findSecondLargest(task1Numbers);
 
-        /* 
-           Task 2: Return Unique Elements
-         */
-        const array1 = [1, 2, 3, 4];
-        const array2 = [3, 4, 5, 6];
+        document.getElementById("task1").textContent =
+            "Second Largest Number: " + secondLargest;
 
+
+        /*
+          ======================
+          Task 2: Unique Elements
+          ======================
+        */
         function getUniqueElements(arr1, arr2) {
             return [...new Set([...arr1, ...arr2])];
         }
 
+        const array1 = [1, 2, 3, 4];
+        const array2 = [3, 4, 5, 6];
         const uniqueElements = getUniqueElements(array1, array2);
 
-        console.log("Task 2 - Unique Elements:", uniqueElements);
-        document.write("Task 2 - Unique Elements: " + uniqueElements.join(", ") + "<br><br>");
+        document.getElementById("task2").textContent =
+            "Unique Elements: " + uniqueElements.join(", ");
 
-        /* 
-           Task 3: Student Score Analysis
-         */
-        let students = [
+
+        /*
+          ============================
+          Task 3: Student Score Analysis
+          ============================
+        */
+        function findTopStudent(students) {
+            let topStudent = "";
+            let highestAverage = 0;
+
+            students.forEach(student => {
+                let total = 0;
+
+                student.scores.forEach(score => {
+                    total += score;
+                });
+
+                let average = total / student.scores.length;
+
+                if (average > highestAverage) {
+                    highestAverage = average;
+                    topStudent = student.name;
+                }
+            });
+
+            return {
+                name: topStudent,
+                average: highestAverage.toFixed(2)
+            };
+        }
+
+        const students = [
             { name: 'Alice', age: 22, scores: [78, 85, 92] },
             { name: 'Bob', age: 20, scores: [88, 90, 76] },
             { name: 'Charlie', age: 21, scores: [95, 80, 85] }
         ];
 
-        let topStudent = "";
-        let highestAverage = 0;
+        const topStudent = findTopStudent(students);
 
-        students.forEach(student => {
-            let total = 0;
-
-            student.scores.forEach(score => {
-                total += score;
-            });
-
-            let average = total / student.scores.length;
-
-            if (average > highestAverage) {
-                highestAverage = average;
-                topStudent = student.name;
-            }
-        });
-
-        console.log(
-            `Task 3 - Top Student: ${topStudent} (${highestAverage.toFixed(2)})`
-        );
-
-        document.write(
-            `Task 3 - Top Student: ${topStudent} with an average score of ${highestAverage.toFixed(2)}`
-        );
+        document.getElementById("task3").textContent =
+            `Top Student: ${topStudent.name} with an average score of ${topStudent.average}`;
     </script>
 
 </body>
